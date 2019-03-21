@@ -1,0 +1,39 @@
+{
+  "name": "cenum",
+  "version": "1.0.0",
+  "main": "lib/enum.js",
+  "module": "es/enum.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf es lib dist && yarn es && yarn lib && yarn dist",
+    "es": "MODULES=false babel enum.js -d es",
+    "lib": "MODULES=commonjs babel enum.js -d lib",
+    "dist": "MODULES=umd babel enum.js -d dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.2.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.3",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+
+  },
+  "description": ""
+}
