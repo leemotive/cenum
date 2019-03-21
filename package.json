@@ -32,8 +32,14 @@
   "directories": {
     "lib": "lib"
   },
-  "dependencies": {
-
+  "dependencies": {},
+  "description": "一个简易的enum库",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leemotive/cenum.git"
   },
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/leemotive/cenum/issues"
+  },
+  "homepage": "https://github.com/leemotive/cenum#readme"
 }
