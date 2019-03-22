@@ -1,14 +1,15 @@
 {
   "name": "cenum",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "lib/enum.js",
   "module": "es/enum.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf es lib dist && yarn es && yarn lib && yarn dist",
+    "build": "rm -rf es lib dist && yarn es && yarn lib && yarn dist && yarn min",
     "es": "MODULES=false babel cenum.js -d es",
     "lib": "MODULES=commonjs babel cenum.js -d lib",
-    "dist": "MODULES=umd babel cenum.js -d dist"
+    "dist": "MODULES=umd babel cenum.js -d dist",
+    "min": "uglifyjs dist/cenum.js -o dist/cenum.min.js"
   },
   "husky": {
     "hooks": {
@@ -27,14 +28,17 @@
     "eslint": "^5.15.3",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "uglify-js": "^3.5.1"
   },
   "directories": {
     "lib": "lib"
   },
   "dependencies": {},
   "description": "一个简易的enum库",
-  "keywords": ["enum"],
+  "keywords": [
+    "enum"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leemotive/cenum.git"
