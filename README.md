@@ -33,7 +33,7 @@ status.ACTIVE.name // ACTIVE
 status.ACTIVE.value // 0
 ```
 
-or use parse
+或者使用parse批量转换
 ```javascript
 import { enums, parse } from 'cenum';
 
@@ -51,5 +51,20 @@ parse({
 enums.role // 角色Enum
 enums.gender // 性别Enum
 ```
+
+构造方法的参数有四种格式
+1. 以对象方式完整定义name, value, label  
+  [{name, value, label}, ...] 
+1. 以数组方式完整定义name, value, label  
+  [[name, value, label], ...]
+1. 只提供值, name和labe将和value保持一致  
+  [value, ...]
+1. 以键-值对的方式定义name和value  
+  {name: value, ...}
+
+>当缺失name或者label的时候，将自动用name表示label或者用label表示name  
+当name和label都没有的时候，将默认等于value
+
+
 
 请确保每一条的name, value, label互相之前都是不一样的

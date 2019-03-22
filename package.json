@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf es lib dist && yarn es && yarn lib && yarn dist",
-    "es": "MODULES=false babel enum.js -d es",
-    "lib": "MODULES=commonjs babel enum.js -d lib",
-    "dist": "MODULES=umd babel enum.js -d dist"
+    "es": "MODULES=false babel cenum.js -d es",
+    "lib": "MODULES=commonjs babel cenum.js -d lib",
+    "dist": "MODULES=umd babel cenum.js -d dist"
   },
   "husky": {
     "hooks": {
