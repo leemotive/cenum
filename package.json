@@ -34,6 +34,7 @@
   },
   "dependencies": {},
   "description": "一个简易的enum库",
+  "keywords": ["enum"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leemotive/cenum.git"
