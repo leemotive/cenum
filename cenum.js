@@ -34,12 +34,26 @@ class Enum {
 }
 
 class Item {
-  constructor({ label, name, value }) {
+  constructor(data) {
+    const { label, name, value } = data;
     this.label = label ?? name;
     this.name = name ?? label;
     this.value = value;
 
-    this.isItem = true;
+    Object.defineProperties(this, {
+      isItem: {
+        configurable: false,
+        enumerable: false,
+        value: true,
+        writable: false,
+      },
+      __original: {
+        configurable: false,
+        enumerable: false,
+        value: data,
+        writable: false,
+      },
+    });
     Object.freeze(this);
   }
 
