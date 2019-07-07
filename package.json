@@ -1,8 +1,8 @@
 {
   "name": "cenum",
-  "version": "1.4.0",
-  "main": "lib/cenum.js",
-  "module": "es/cenum.js",
+  "version": "1.4.1",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf es lib dist && rollup -c && uglifyjs dist/cenum.js -o dist/cenum.min.js"
