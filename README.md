@@ -28,6 +28,9 @@ status.has('INACTIVE'); // true
 status.has(0); // true
 status.has('未激活'); // true
 
+status.ACTIVE.in(0, 1) // true
+status.ACTIVE.in(['ACTIVE', '未激活']) // true
+
 status.ACTIVE.label // 激活
 status.ACTIVE.name // ACTIVE
 status.ACTIVE.value // 0

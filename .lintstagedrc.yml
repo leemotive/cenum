@@ -1,5 +1,4 @@
-linters:
-  '*.js':
-    - 'prettier --write'
-    - eslint
-    - 'git add'
+'*.js':
+  - 'prettier --write'
+  - eslint
+  - 'git add'

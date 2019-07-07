@@ -40,20 +40,9 @@ class Item {
     this.name = name ?? label;
     this.value = value;
 
-    Object.defineProperties(this, {
-      isItem: {
-        configurable: false,
-        enumerable: false,
-        value: true,
-        writable: false,
-      },
-      __original: {
-        configurable: false,
-        enumerable: false,
-        value: data,
-        writable: false,
-      },
-    });
+    this.isItem = true;
+    this.__original = data;
+
     Object.freeze(this);
   }
 
@@ -63,6 +52,9 @@ class Item {
   equals(data) {
     return this.is(data);
   }
+  in(...data) {
+    return data.flat().some(v => this.is(v));
+  }
 }
 
 const enums = {};
@@ -71,7 +63,7 @@ export default Enum;
 
 export function parse(json) {
   if (!json || typeof json !== 'object') {
-    return;
+    return enums;
   }
   Object.entries(json).forEach(([name, value]) => {
     if (typeof value === 'object') {
