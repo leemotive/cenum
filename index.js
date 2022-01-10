@@ -18,11 +18,11 @@ function adapter(data) {
 }
 
 class Enum {
-  constructor(data) {
-    for (let item of adapter(data)) {
-      const { label, name } = item;
-      this[name ?? label] = new Item(item);
-    }
+  constructor(items) {
+    adapter(items).forEach((data, index) => {
+      const { label, name } = data;
+      this[name ?? label] = new Item({ ...data, ordinal: index }, this);
+    });
   }
   get(data) {
     return Object.values(this).find(item => item.isItem && item.is(data));
@@ -34,15 +34,22 @@ class Enum {
 }
 
 class Item {
-  constructor(data) {
-    const { label, name, value } = data;
+  constructor(data, enumer) {
+    const { label, name, value, ordinal } = data;
     this.label = label ?? name;
     this.name = name ?? label;
     this.value = value;
+    this.ordinal = ordinal;
 
     this.isItem = true;
-    this.__original = data;
-
+    Object.defineProperties(this, {
+      __original: {
+        value: data,
+      },
+      __enumer: {
+        value: enumer,
+      },
+    });
     Object.freeze(this);
   }
 
@@ -54,6 +61,14 @@ class Item {
   }
   in(...data) {
     return data.flat().some(v => this.is(v));
+  }
+  compare(data) {
+    const item = this.__enumer.get(data);
+    if (!item) {
+      throw new Error(`unknown enum value for: ${data}`);
+    }
+
+    return Math.sign(this.ordinal - item.ordinal);
   }
 }
 
