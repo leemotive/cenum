@@ -20,20 +20,20 @@ const status = new Enum([
   {name: 'INACTIVE', value: 0, lable: '未激活'}
 ]);
 
-status.ACTIVE.is(1); // true
-status.ACTIVE.is('ACTIVE'); // true
-status.ACTIVE.is('激活'); // true
+status.get('ACTIVE').is(1); // true
+status.get('ACTIVE').is('ACTIVE'); // true
+status.get('ACTIVE').is('激活'); // true
 
 status.has('INACTIVE'); // true
 status.has(0); // true
 status.has('未激活'); // true
 
-status.ACTIVE.in(0, 1) // true
-status.ACTIVE.in(['ACTIVE', '未激活']) // true
+status.get('ACTIVE').in(0, 1) // true
+status.get('ACTIVE').in(['ACTIVE', '未激活']) // true
 
-status.ACTIVE.label // 激活
-status.ACTIVE.name // ACTIVE
-status.ACTIVE.value // 0
+status.get('ACTIVE').label // 激活
+status.get('ACTIVE').name // ACTIVE
+status.get('ACTIVE').value // 0
 ```
 
 或者使用parse批量转换
