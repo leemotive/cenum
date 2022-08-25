@@ -36,6 +36,11 @@ status.get('ACTIVE').name // ACTIVE
 status.get('ACTIVE').value // 0
 ```
 
+除了通过 `get` 方法获取对应的枚举，还可以通过枚举名称直接获取，前提条件是枚举名称和内部变量不产生冲突，所以建议名称使用大写，因为内部变量都用的小写，保证不冲突
+```javascript
+status.ACTIVE.label // 激活
+```
+
 或者使用parse批量转换
 ```javascript
 import { enums, parse } from 'cenum';

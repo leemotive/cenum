@@ -31,7 +31,11 @@ function adapter(data: Array<ObjectItem | ArrayItem | string> | object): Array<O
 type FindType = number | string | Item;
 
 class Enum {
-  enums: {
+  // eslint-disable-next-line no-use-before-define
+  [k: string]: Item;
+
+  // @ts-expect-error ignore incompatible width index signature;
+  private enums: {
     // eslint-disable-next-line no-use-before-define
     [k: string]: Item;
   };
@@ -40,10 +44,18 @@ class Enum {
     this.enums = {};
     adapter(items).forEach((data, index) => {
       const { label, name } = data;
-      this.enums[name ?? label] = new Item({ ...data, ordinal: index }, this);
+      const key = name ?? label;
+      const item = new Item({ ...data, ordinal: index }, this);
+      this.enums[key] = item;
+
+      if (!['get', 'has', 'enums'].includes(key)) {
+        // support visit via enum name if the name is not same as reserved keys;
+        this[key] = item;
+      }
     });
   }
 
+  // @ts-expect-error ignore incompatible width index signature;
   get(data: FindType): Item {
     const obj = Object.values(this.enums).find(item => item.is(data));
     if (!obj) {
@@ -52,6 +64,7 @@ class Enum {
     return obj;
   }
 
+  // @ts-expect-error ignore incompatible width index signature;
   has(data: FindType): boolean {
     try {
       return !!this.get(data);

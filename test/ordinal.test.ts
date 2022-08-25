@@ -43,3 +43,8 @@ test('内部持有', () => {
 
   expect(enums.gender.get('male').compare('female')).toBe(-1);
 });
+
+test('直接访问', () => {
+  const directions = new CEnum(['east', 'south', 'west', 'north']);
+  expect(directions.east).toBe(directions.get('east'));
+});
